@@ -112,7 +112,7 @@ const user = {
 		const sayBye = () => {
 			console.log(this);
 		}
-		sayBye(); 
+		sayBye(); //user가 나옴
 	}
 }
 
