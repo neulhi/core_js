@@ -58,10 +58,12 @@ console.log(object);
 
 
 // 8. 고유한 식별자(unique identifier)
-const id = Symbol('uuid');
-const id2 = Symbol('uuid');
+const uuid = Symbol('uuid');
+const uuid2 = Symbol('uuid');
 
-console.log(typeof id);
+console.log(uuid === uuid2);
+
+console.clear();
 
 
 /* typeof 연산자의 2가지 사용법 ---------------------------------------------- */
@@ -93,6 +95,7 @@ console.log(typeof id);
 const user = {
 	name:'tiger',
 	age:42,
+	payment:false,
 	sayHi:function(){
 		console.log('this'); //user가 나옴
 	},
