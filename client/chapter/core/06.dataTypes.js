@@ -97,19 +97,19 @@ const user = {
 	age:42,
 	payment:false,
 	sayHi:function(){
-		console.log('this'); //user가 나옴
+		console.log('this'); //user가 나옴 - normal function(생성자 함수) / class 문법으로 많이 사용
 	},
 	sayHi2:() => {
-		console.log('this'); //window가 나옴
+		console.log('this'); //window가 나옴 - arrow function 
 	},
 	sayHi3(){
-		console.log('this'); //user가 나옴
+		console.log('this'); //user가 나옴 - concise method
 	},
 	sayHi4(){
 		function sayBye(){
 			console.log(this);
 		}
-		sayBye(); //window가 나옴 - 앞에 누구에 의해 호출 됐는지가 없기 떄문에
+		sayBye(); //window가 나옴 - 앞에 누구에 의해 호출됐는지가 없기 떄문에
 	},
 	sayHi5(){
 		const sayBye = () => {

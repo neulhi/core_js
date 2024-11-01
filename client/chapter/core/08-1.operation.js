@@ -38,7 +38,7 @@ let multiplication = 20 * 3;
 console.log(multiplication);
 
 // 산술 연산자: 나눗셈
-let division = 30 /3;
+let division = 30 / 3;
 console.log(division);
 
 // 산술 연산자: 나머지
@@ -74,11 +74,14 @@ let second = [4,5,6];
 // const mix = first.concat(second);
 // console.log(mix);
 
+
+console.log(...first,...second);
+// 1 2 3 4 5 6
+
 // *중요
 // ...(세 개의 점)
 // spread operator 전개 연산자
 // spread syntax 전개 구문
-console.log(...first,...second);
 console.log([...first,...second]);
 // [1, 2, 3, 4, 5, 6]
 
@@ -95,8 +98,6 @@ let counter = 0;
 console.log(counter++); // 0
 console.log(++counter); // 2
 console.log(counter); // 2
-
-
 
 // 아래 코드를 읽기 쉽도록 변경합니다.
 // 그리고 연산자 우선 순위에 따라 연산 과정을 유추해보세요.
