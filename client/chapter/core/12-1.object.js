@@ -208,6 +208,47 @@ const [first,second] = document.querySelectorAll('span');
 console.log(first);
 console.log(second);
 
+console.clear();
+
+
 /* -------------------------------------------- */
 /* 객체 구조 분해 할당  destructuring assignments    */
 /* --------------------------------------------- */
+
+const salaries = {
+	김미리: 800,
+	박혜미: 130,
+	이성우: undefined,
+	명재휘: 80
+}
+
+// 객체의 구조 본해 할당 : 순서가 상관없다. 객체의 key와 변수의 이름이 동일해야 한다.
+// 하지만 변수명 별칭 설정가능 (박혜미:박) 별칭 설정하면 별칭으로만 불러서 써야 함.
+// 배열처럼 기본값 설정도 가능 (값을 undefined로 해 놔야 됨) => 이성우:이 = 200,
+const {
+	박혜미:박,
+	이성우:이 = 200,
+	명재휘,
+	김미리,
+	이영범 = 300
+} = salaries;
+
+console.log(김미리);
+console.log(박);
+console.log(이영범);
+console.log(이);
+
+// const { 박혜미, 이성우, 명재휘, 김미리 } = salaries;
+
+console.clear();
+
+function createUserObject(name,age,address,phone){
+  
+  return { name, age, address, phone }
+}
+
+
+const user = createUserObject('심선범','35','중랑구','010-7169-0262')
+
+console.log(user);
+
