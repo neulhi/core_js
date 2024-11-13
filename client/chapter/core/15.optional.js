@@ -53,8 +53,7 @@ console.log(2);
 	console.log(4);
 	console.log(5);*/
 
-
-// ⭐⭐⭐⭐⭐debounce, throttle⭐⭐⭐⭐⭐ 
+// ⭐⭐⭐⭐⭐debounce, throttle⭐⭐⭐⭐⭐
 const button = document.querySelector('.my-button');
 
 const t = setTimeout(() => {
@@ -82,11 +81,10 @@ let count = 0;
 // }, 0);
 
 function animation() {
-  document.querySelector('.second').style.transform =
-    `translateY(-${++count}px) rotate(${count}deg)`;
-
+  document.querySelector('.second').style.transform = `
+    translateY(-${++count}px) rotate(${count}deg)
+  `;
   const id = requestAnimationFrame(animation);
-
   if (count >= 500) {
     cancelAnimationFrame(id);
   }
