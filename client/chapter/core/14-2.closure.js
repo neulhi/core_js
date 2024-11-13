@@ -41,8 +41,16 @@ function useState(init) {
   return [read, write];
 }
 
-const [number,setNumber] = useState(10);
+const [number, setNumber] = useState(10);
 
 console.log(number()); // 10
 console.log(setNumber(30)); // 30으로 수정
 console.log(number()); // 30
+
+/* 
+전역오염을 시키지 않고 
+외부변수에 접근할수 있는 encapsulation 함수
+함수 내부에 전달된 변수의 값을 가지고 있기 때문에 return으로 내보낼 수 있다.
+GC 수집 대상이 되지 않는다.
+지워지지 않는 렉시컬 환경을 많이 생성하기 때문에 콜스텍에 부하를 줄 수 있다. (체감 어렵다)
+ */
