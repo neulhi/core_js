@@ -25,9 +25,6 @@
 // - elementNode.removeAttribute(name) – 속성값을 지움
 // - elementNode.attributes – 열거 가능한(iterable) 속성 집합을 반환함
 
-// 함수 만들어보기
-setAttr()
-
 const about = getNode('.about');
 
 // 1. class 속성이 있는지 확인
@@ -51,9 +48,35 @@ about.dataset.value = 100;
 // console.log(about.getAttribute('data-value'));
 console.log(about.dataset.value);
 
+// JavaScript Object Notation
+// JSON
+
+
 /* 비표준 속성, 프로퍼티 설정 ------------------------------------------------- */
 
 // data-* 속성은 커스텀 데이터를 안전하고 유효하게 전달해줍니다.
 // data-* 속성을 사용하면 읽기 쉽고, 수정도 손쉽습니다.
 
 // - elementNode.dataset
+
+// setAttr() 함수 만들어보기
+// function setAttr(node,prop,value){
+  
+//   if(isString(node)) node = getNode(node);
+//   if(!isString(prop)) throw typeError('setAttr 함수의 두 번째 인수는 문자 타입 이어야 합니다.');
+//   if(isUndefined(value) || value === ''){
+    
+//     node.removeAttribute(prop);
+//     return;
+//   }
+
+//   if( prop.startsWith('data') ) {
+//     prop = prop.slice(5);
+//     node.dataset[prop] = value;
+//     return;
+//   }
+
+//   node.setAttribute(prop,value);
+
+// }
+// setAttr('.about','data-name','안녕');

@@ -13,6 +13,7 @@ const types = {
 
 const dom = {
   getNode: true,
+	insertLast: true,
 };
 
 export default [
