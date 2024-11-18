@@ -75,7 +75,7 @@ nav {
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgb(70, 167, 70);
-	cursor: none;
+	/* cursor: none; */
 	overflow: hidden;
 }
 
@@ -91,3 +91,17 @@ nav {
 	pointer-events: none;
 }
 
+section{
+  background-color: dodgerblue;
+  padding: 2rem;
+
+  & article {
+    background-color: hotpink;
+    padding: 2rem;
+
+    & p {
+      background-color: orange;
+      padding: 2rem;
+    }
+  }
+}

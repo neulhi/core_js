@@ -28,50 +28,80 @@ about.addEventListener('wheel', handler);
 const ground = getNode('.ground');
 const ball = getNode('.ball');
 
-function handleBall({offsetX:x, offsetY:y}) {
-
-	// const {offsetX:x, offsetY:y} = e;
+function handleBall({ offsetX: x, offsetY: y }) {
+  // const {offsetX:x, offsetY:y} = e;
 
   // const x = e.offsetX;
   // const y = e.offsetY;
 
-	const w = ball.offsetWidth;
-	const h = ball.offsetHeight;
+  const w = ball.offsetWidth;
+  const h = ball.offsetHeight;
 
-  ball.style.transform = `translate(${x - (w / 2)}px,${y - (h / 2)}px)`;
+  ball.style.transform = `translate(${x - w / 2}px,${y - h / 2}px)`;
 }
 
 ground.addEventListener('click', handleBall);
 
-function handleMove({offsetX:x, offsetY:y}) {
+function handleMove({ offsetX: x, offsetY: y }) {
+  // const w = ball.offsetWidth;
+  // const h = ball.offsetHeight;
 
-	// const w = ball.offsetWidth;
-	// const h = ball.offsetHeight;
+  // ball.style.transform = `translate(${x - (w / 2)}px,${y - (h / 2)}px)`;
 
-	// ball.style.transform = `translate(${x - (w / 2)}px,${y - (h / 2)}px)`;
-
-	const template = `
+  const template = `
 		<div class="emotion" style="top:${y}px; left:${x}px;">👻</div>
-	`
+	`;
 
-	insertLast(ground, template)
+  insertLast(ground, template);
 }
 
-ground.addEventListener('mousemove', handleMove);
+// ground.addEventListener('mousemove', handleMove);
 
+// debounce -> 불필요한 연속적인 실행을 막아줌 -> input(로그인창,검색창 등등), resize(브라우저 사이즈 조절)
 
+// function handle(e){
+//   console.log(e);
 
+// }
 
-// debounce 
+ground.addEventListener('mousemove', debounce(handleMove, 100));
 
-const input = getNode('input');
+function debounce(callback, limit = 500) {
+  let timeout;
 
-function handleInput() {
-	if(this.value === 'hn@email.com')
-	console.log('통과');
+  return function (e) {
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      callback.call(this, e);
+    }, limit);
+  };
 }
 
-input.addEventListener('input', handleInput)
+// debounce(() => {
+//   console.log('hello');
+// }, 1000);
+// debounce(() => {console.log('hello');}, 1000);
+// debounce(() => {console.log('hello');}, 1000);
+
+// throttle
+
+function handle(e) {
+  console.log(e);
+}
+
+ground.addEventListener('mousemove', throttle(handle, 100));
+
+function throttle(callback, limit = 500) {
+  let wait = false;
+  return function (...args) {
+    if (!wait) {
+      callback.apply(this, args);
+      wait = true;
+      setTimeout(() => (wait = false), limit);
+    }
+  };
+}
 
 // closure 방식
 /*function bindEvent(node, type, handler) {
