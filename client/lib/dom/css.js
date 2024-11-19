@@ -1,20 +1,22 @@
-/* global syntaxError */
+import { isString, isObject, isArray } from '../utils/type.js';
+import { getNode } from "./getNode.js";
+import { syntaxError } from "../error/syntaxError.js";
 
 
 /* -------------------------------------------- */
 /*                   css class                  */
 /* -------------------------------------------- */
 
-// JSDoc: 코드 사용 가이드 추가하는 방법 -> /** */
 
 /**
  * @function DOM Element에 클래스를 추가하는 함수
- * @param {HTMLElement | string} node 
- * @param  {string | array | object} className 
- * @return {void}
+ * @author kindtiger 
+ * @type {HTMLElement | string} node 
+ * @type  {string | array | object} className 
+ * @return {void} 
  */
 
-function addClass(node,...className){
+export function addClass(node,...className){
 
   if(isString(node)) node = getNode(node);
   
@@ -33,18 +35,14 @@ function addClass(node,...className){
     }
   })
 }
-
-
-function removeClass(node,className){
+export function removeClass(node,className){
   if(isString(node)) node = getNode(node);
   if(!className){
     node.className = '';
   }
   node.classList.remove(className);
 }
-
-
-function toggleClass(node,className){
+export function toggleClass(node,className){
   if(isString(node)) node = getNode(node);
   return node.classList.toggle(className);
 }
@@ -67,7 +65,6 @@ function getCss(node,prop){
 
 }
 
-
 function setCss(node,prop,value){
   if(isString(node)) node = getNode(node);
   if(!(prop in document.body.style)) throw syntaxError('setCss 함수의 두 번째 인수는 유효한 css 속성 이어야 합니다.');
@@ -75,6 +72,7 @@ function setCss(node,prop,value){
   node.style[prop] = value;
 }
 
+export const css = (node,prop,value) => !value ? getCss(node,prop) : setCss(node,prop,value);
 
 
-const css = (node,prop,value) => !value ? getCss(node,prop) : setCss(node,prop,value);
+
