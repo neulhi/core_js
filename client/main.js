@@ -1,4 +1,16 @@
-import { getNode as $ } from './lib/index.js';
+import data from './data/data.js';
+import {
+  copy,
+  shake,
+  addClass,
+  getRandom,
+  showAlert,
+  insertLast,
+  removeClass,
+  getNode as $,
+  clearContents,
+  isNumericString,
+} from './lib/index.js';
 
 {
   // 주접 생성기
@@ -9,17 +21,56 @@ import { getNode as $ } from './lib/index.js';
   // 2. input 값 가져오기
   //    - input.value
   // 3. data함수에서 주접 1개 꺼내기
-  //    - data(name)
-  //    - getRandom()
-  // 4. pick 항목 랜더링하기
+  //    - data(name) -> n번째 random 주접을 꺼내기
+  //    - getRandom() -> Math.random()
+  // 4. pick 항목 result에 랜더링하기
+  //    - insertLast()
   // [phase-2]
-  // 1. 아무 값도 입력 받지 못했을 때 예외처리 (콘솔 출력)
+  // 5. 예외처리 (콘솔 출력)
+  //    - 아무 값도 입력 받지 못했을 때 콘솔에 에러 출력
+  //    - 숫자만 들어오면 콘솔에 에러 출력
 }
 
 const submit = $('#submit');
+const nameField = $('#nameField');
+const result = $('.result');
 
-function handleSubmit() {
-	
+function handleSubmit(e) {
+  e.preventDefault();
+
+  const name = nameField.value;
+  const list = data(name);
+  const pick = list[getRandom(list.length)];
+
+  // 만약에 name의 값이 '' 라면...
+  if (!name || name.replaceAll(' ', '') === '') {
+    // alert('제대로된 이름을 입력해 주세요.');
+
+    showAlert('.alert-error', '공백은 허용하지 않습니다', 1200);
+
+    // addClass(nameField, 'shake')
+    shake(nameField);
+
+    return;
+  }
+
+  if (!isNumericString(name)) {
+    showAlert('.alert-error', '정확한 이름을 입력해 주세요', 1200);
+    shake(nameField);
+    return;
+  }
+
+  clearContents(result);
+  insertLast(result, pick);
 }
 
-submit.addEventListener('click', handleSubmit)
+function handleCopy() {
+  const text = this.textContent;
+
+  copy(text).then(() => {
+    showAlert('.alert-success', '클립보드 복사 완료!');
+  });
+}
+
+submit.addEventListener('click', handleSubmit);
+result.addEventListener('click', handleCopy);
