@@ -9,9 +9,9 @@
 // import clearContents from './lib/dom/clearContents.js';
 
 import {
-  getNode,
+  getNode as $,
   getNodes,
-	typeError,
+  typeError,
   insertLast,
   clearContents,
 } from './lib/index.js';
@@ -30,22 +30,59 @@ import {
      		- clearContents
 	*/
 }
-
 /* global clearContents */
-const first = getNode('#firstNumber');
-const second = getNode('#secondNumber');
-const result = getNode('.result');
-const clear = getNode('#clear');
 
-function handleInput() {
-  const firstValue = Number(first.value);
-  const secondValue = +second.value;
-  const total = firstValue + secondValue;
+function phase1() {
+  const first = getNode('#firstNumber');
+  const second = getNode('#secondNumber');
+  const result = getNode('.result');
+  const clear = getNode('#clear');
 
-  clearContents(result);
-  insertLast(result, total);
+  function handleInput() {
+    const firstValue = Number(first.value);
+    const secondValue = +second.value;
+    const total = firstValue + secondValue;
+
+    clearContents(result);
+    insertLast(result, total);
+  }
+
+  function handleClear(e) {
+    e.preventDefault();
+
+    clearContents(first);
+    clearContents(second);
+
+    result.textContent = '_';
+  }
+
+  first.addEventListener('input', handleInput);
+  second.addEventListener('input', handleInput);
+  clear.addEventListener('click', handleClear);
 }
 
-first.addEventListener('input', handleInput);
-second.addEventListener('input', handleInput);
-// clear.addEventListener('click', handleClear);
+function phase2() {
+  const calculator = $('.calculator');
+  const result = $('.result');
+  const clear = $('#clear');
+  const numberInputs = [...document.querySelectorAll('input:not(#clear)')];
+
+  function handleInput() {
+    const total = numberInputs.reduce((acc, cur) => acc + Number(cur.value), 0);
+
+    clearContents(result);
+    insertLast(result, total);
+  }
+
+  function handleClear(e) {
+    e.preventDefault();
+
+    numberInputs.forEach(clearContents);
+    result.textContent = '-';
+  }
+
+  calculator.addEventListener('input', handleInput);
+  clear.addEventListener('click', handleClear);
+}
+
+phase2();
