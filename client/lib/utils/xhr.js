@@ -188,7 +188,7 @@ xhrPromise({
   url: END_POINT,
 })
   .then((결과) => {
-    console.log(결과);
+    // console.log(결과);
   })
   .catch((에러) => {
     console.log(에러);
@@ -199,15 +199,15 @@ xhrPromise.post = (url, body) => xhrPromise({ url, body, method: 'POST' });
 xhrPromise.put = (url, body) => xhrPromise({ url, body, method: 'PUT' });
 xhrPromise.delete = (url) => xhrPromise({ url, method: 'DELETE' });
 
-xhrPromise
-  .get(END_POINT)
-  .then((res) => {
-    res.forEach(({ website }) => {
-      const tag = `
-			<div>${website}</div>
-		`;
-      document.body.insertAdjacentHTML('beforeend', tag);
-    });
-  })
-  .then(() => {})
-  .catch(() => {});
+// xhrPromise
+//   .get(END_POINT)
+//   .then((res) => {
+//     res.forEach(({ website }) => {
+//       const tag = `
+// 			<div>${website}</div>
+// 		`;
+//       document.body.insertAdjacentHTML('beforeend', tag);
+//     });
+//   })
+//   .then(() => {})
+//   .catch(() => {});

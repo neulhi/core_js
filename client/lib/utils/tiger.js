@@ -1,0 +1,96 @@
+const END_POINT = 'https://jsonplaceholder.typicode.com/users';
+
+const defaultOptions = {
+  method: 'GET',
+  body: null,
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
+};
+
+const tiger = async (options) => {
+  const { url, ...restOptions } = {
+    ...defaultOptions,
+    ...options,
+    headers: {
+      ...defaultOptions.headers,
+      ...options.headers,
+    },
+  };
+
+  const response = await fetch(url, restOptions);
+
+  if (response.ok) {
+    response.data = await response.json();
+  }
+
+  return response;
+};
+
+// const response = await tiger({ url: END_POINT });
+
+tiger.get = (url, options) => {
+  return tiger({
+    url,
+    ...options,
+  });
+};
+
+tiger.post = (url, body, options) => {
+  return tiger({
+    method: 'POST',
+    url,
+    body: JSON.stringify(body),
+    ...options,
+  });
+};
+tiger.post(END_POINT, { name: '감자', age: 13 });
+
+tiger.put = (url, body, options) => {
+  return tiger({
+    method: 'PUT',
+    url,
+    ...options,
+    body: JSON.stringify(body),
+  });
+};
+
+tiger.patch = (url, body, options) => {
+  return tiger({
+    method: 'PATCH',
+    url,
+    ...options,
+    body: JSON.stringify(body),
+  });
+};
+
+tiger.delete = (url, options) => {
+  return tiger({
+    method: 'DELETE',
+    url,
+    ...options,
+  });
+};
+
+(async function () {
+  const response = await tiger.get(END_POINT);
+  console.log(response.data);
+})();
+
+// tiger.get();
+// tiger.post();
+// tiger.put();
+// tiger.patch();
+// tiger.delete();
+
+function getGeolocation() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition((data) => {
+      const { latitude: lat, longitude: long } = data.coords;
+      resolve({ lat, long });
+    });
+  });
+}
+
+const data = await getGeolocation();

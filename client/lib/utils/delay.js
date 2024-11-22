@@ -171,17 +171,17 @@ async function 라면끓이기() {
 // 라면끓이기();
 
 // Promise
-function getData() {
-  xhrPromise.get('https://pokeapi.co/api/v2/pokemon/7').then((res) => {
-    console.log(res);
+// function getData() {
+//   xhrPromise.get('https://pokeapi.co/api/v2/pokemon/7').then((res) => {
+//     console.log(res);
 
-    insertLast(
-      document.body,
-      `<img src="${res.sprites.other.showdown['front_default']}" alt="" />`
-    );
-  });
-}
-getData();
+//     insertLast(
+//       document.body,
+//       `<img src="${res.sprites.other.showdown['front_default']}" alt="" />`
+//     );
+//   });
+// }
+// getData();
 
 // async와 await
 async function _getData() {
