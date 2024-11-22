@@ -9,7 +9,7 @@ const defaultOptions = {
   },
 };
 
-const tiger = async (options) => {
+export const tiger = async (options) => {
   const { url, ...restOptions } = {
     ...defaultOptions,
     ...options,
@@ -73,10 +73,11 @@ tiger.delete = (url, options) => {
   });
 };
 
-(async function () {
-  const response = await tiger.get(END_POINT);
-  console.log(response.data);
-})();
+// IIAFE 비동기 함수 즉시 실행
+// (async function () {
+//   const response = await tiger.get(END_POINT);
+//   console.log(response.data);
+// })();
 
 // tiger.get();
 // tiger.post();
