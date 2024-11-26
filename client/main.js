@@ -1,42 +1,13 @@
-import { getNode, getStorage, setStorage, deleteStorage } from './lib/index.js';
+import { Button } from './components/Button/Button.js';
 
-{
-  // 1. 인풋 이벤트 바인딩
-  //    - 인풋(textarea) 태그 선택
-  //    - addEventListener('input', handler)
-  //    - handler 함수 안에서 값 가져오기 (this.value)
-  //
-  // 2. 인풋 값을 로컬 스토리지에 저장(타이핑 하는 순간 순간마다)
-  //		- setStorage(key, value)
-  //
-  // 3. 로컬스토리지에 있는 값을 가져와 잇푼의 value로 설정
-  // 		- getStorage
-  // 		- text.value = value
-  //
-  // 4. 새로고침 -> 데이터 유지
-  //
-  // 5. clear 버튼 클릭 시 데이터 제거(로컬스토리지, 인풋 값)
+const app = document.getElementById('app');
+
+function defineElements() {
+  customElements.define('custom-button', Button);
 }
 
-const textField = getNode('#textField');
-const clearButton = getNode('button[data-name="clear"]');
+defineElements();
 
-function handleInput() {
-  const value = this.value;
-  setStorage('text', value);
-}
+const buttonElement = document.createElement('custom-button');
 
-function handleClear() {
-  textField.value = '';
-  deleteStorage('text');
-}
-
-function init() {
-  console.log('초기화');
-  getStorage('text').then((res) => (textField.value = res));
-}
-
-textField.addEventListener('input', handleInput);
-clearButton.addEventListener('click', handleClear);
-
-init();
+app.append(buttonElement);
