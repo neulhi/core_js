@@ -61,15 +61,15 @@ export class Button extends HTMLElement {
 			background-color: ${active ? 'orange' : 'skyblue'}; 
 			/* - active 상태에 따라 버튼의 배경색 변경. */
 		}
-		
+
 		/* - active 상태에 따라 버튼 내부 텍스트 변경. */
+		/* - 버튼의 ARIA 상태를 업데이트. 접근성 지원 */
+		/* - 현재 상태에 맞는 라벨 설정. */
 		</style>
     <button 
       type="button"
       aria-pressed="${active}" 
-      /* - 버튼의 ARIA 상태를 업데이트. 접근성 지원 */
       aria-label="${active ? '활성화' : '비활성화'}" 
-      /* - 현재 상태에 맞는 라벨 설정. */
     >
       ${active ? '🐯' : '❌'}
     </button>
