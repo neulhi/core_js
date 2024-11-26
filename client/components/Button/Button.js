@@ -61,6 +61,8 @@ export class Button extends HTMLElement {
 			background-color: ${active ? 'orange' : 'skyblue'}; 
 			/* - active 상태에 따라 버튼의 배경색 변경. */
 		}
+		
+		/* - active 상태에 따라 버튼 내부 텍스트 변경. */
 		</style>
     <button 
       type="button"
@@ -69,10 +71,9 @@ export class Button extends HTMLElement {
       aria-label="${active ? '활성화' : '비활성화'}" 
       /* - 현재 상태에 맞는 라벨 설정. */
     >
-      ${active ? '🐯' : '❌'} 
-      /* - active 상태에 따라 버튼 내부 텍스트 변경. */
+      ${active ? '🐯' : '❌'}
     </button>
-  `;
+		`;
 
     // 11. 클릭 이벤트 리스너 추가
     this.shadowRoot
