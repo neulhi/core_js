@@ -1,22 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko-KR">
-<head>
-	<title>%MODE%</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="/favicon.svg" type="image/x-icon">
+  <head>
+    <title>%MODE%</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<link rel="stylesheet" href="/src/tailwind.css">
 
-	<script src="/src/main.js" type="module"></script>
-</head>
-<body>
+		<script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <div id="app">
 
-	%BASE_URL%
-	<br>
-	%VITE_TEXT%
-	
-	<div id="app">
-		hello vite
-	</div>
-	
-</body>
+			<c-header></c-header>
+
+		</div>
+  </body>
 </html>
