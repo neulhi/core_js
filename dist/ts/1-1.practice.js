@@ -9,4 +9,5 @@ let isStudent = false;
 let nothing = null;
 // unfinded
 let dotDefined = undefined;
+console.log(isStudent);
 export {};
