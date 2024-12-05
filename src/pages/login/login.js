@@ -1,9 +1,9 @@
 
 
-import '@/pages/login/login.css'
-import pb from '@/api/pocketbase'
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
+import '@/pages/login/login.css';
+import pb from '@/api/pocketbase';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 function render(){
 
